@@ -3,7 +3,7 @@
 require_relative 'lib/active_job_kubernetes/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'active-job-kubernetes'
+  spec.name          = 'active_job_kubernetes'
   spec.version       = ActiveJobKubernetes::VERSION
   spec.authors       = ['omjadas']
   spec.email         = ['omja.das@gmail.com']

@@ -4,7 +4,7 @@ require 'kubeclient'
 
 module ActiveJob
   module QueueAdapters
-    class KubernetesJobAdapter
+    class KubernetesAdapter
       def enqueue(job)
         kube_job = Kubeclient::Resource.new(job.manifest)
         job.kubeclient('/apis/batch').create_job(kube_job)
