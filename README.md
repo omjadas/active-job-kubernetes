@@ -25,7 +25,43 @@ gem install active-job-kubernetes
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+class HelloWorldJob < ApplicationJob
+  self.queue_adapter = :kubernetes
+
+  def perform
+    puts 'Hello, world'
+  end
+
+  def manifest
+    YAML.safe_load(
+      <<~MANIFEST
+        apiVersion: batch/v1
+        kind: Job
+        metadata:
+          generatedName: hello-world
+        spec:
+          template:
+            metadata:
+              name: hello-world
+            spec:
+              restartPolicy: Never
+              containers:
+                - name: worker
+                  image: example:latest
+                  command: ["rake"]
+                  args: ["active_job_kubernetes:run_job"]
+      MANIFEST
+    )
+  end
+
+  def kubeclient(scope)
+    endpoint = '' # cluster endpoint
+
+    Kubeclient::Client.new(endpoint + scope, 'v1')
+  end
+end
+```
 
 ## Development
 
