@@ -20,7 +20,7 @@ bundle install
 Or install it yourself as:
 
 ```bash
-gem install active-job-kubernetes
+gem install active_job_kubernetes
 ```
 
 ## Usage
@@ -39,7 +39,7 @@ class HelloWorldJob < ApplicationJob
         apiVersion: batch/v1
         kind: Job
         metadata:
-          generatedName: hello-world
+          generateName: hello-world
         spec:
           template:
             metadata:
