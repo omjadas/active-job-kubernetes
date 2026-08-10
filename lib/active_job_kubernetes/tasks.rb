@@ -2,8 +2,6 @@
 
 namespace :active_job_kubernetes do
   task run_job: :environment do
-    ActiveJob::Base.execute(
-      JSON.parse(ENV.fetch(ActiveJob::QueueAdapters::KubernetesAdapter::SERIALIZED_JOB))
-    )
+    ActiveJob::Base.execute(JSON.parse(ENV.fetch(ActiveJobKubernetes::SERIALIZED_JOB)))
   end
 end
